@@ -22,7 +22,6 @@
 
 <script>
 export default {
-  props: ['message'],
   props: ['ontice'],
   data () {
     return {

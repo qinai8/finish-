@@ -373,7 +373,15 @@ export default {
 				roleId: this.forms.id,
 				permissions: res
 			};
-			Modifyrolepermissions(timestamps).then(resspose => {
+			this.axios({
+				url: 'http://192.168.1.54:8080/admin/role/permissions',
+				method: 'get',
+				params: {
+				},
+				headers: {
+					'X-Litemall-Admin-Token': sessionStorage.getItem('token')
+				}
+			}).then(resspose => {
 				console.log(resspose);
 				if (resspose.data.errno == 200) {
 					this.$message({

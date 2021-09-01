@@ -38,7 +38,7 @@
 				<el-main class="Main">
 					<template>
 						<el-table class="formd" :data="tableData" border style="width: 100%;">
-							<el-table-column label="角色管理" align="center" min-width="180" sortable>
+							<el-table-column label="角色名称" align="center" min-width="180" sortable>
 								<template slot-scope="scope">
 									{{ scope.row.name }}
 								</template>
@@ -468,7 +468,7 @@ export default {
 	color: #333;
 	// text-align: center;
 	width: 100%;
-	height: 90px !important;
+	height: 70px !important;
 }
 
 // 中间
@@ -489,7 +489,7 @@ export default {
 .buttom {
 	// background-color: #B3C0D1;
 	color: #333;
-	// text-align: center;
+	text-align: center;
 	width: 100%;
 	height: 130px !important;
 }

@@ -259,7 +259,6 @@ export default {
 				}).then(() => {
 					this.$refs['form'].validate(valid => {
 						if (valid) {
-							let formsds = JSON.stringify(this.form);
 							this.axios({
 								url: 'http://192.168.1.54:8080/admin/role/update',
 								method: 'post',

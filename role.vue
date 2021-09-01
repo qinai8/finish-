@@ -371,12 +371,16 @@ export default {
 			let res = this.$refs.tree.getCheckedKeys(true);
 			let timestamps = {
 				roleId: this.forms.id,
-				permissions: res
+				permissions:res,
 			};
+			console.log(timestamps,"56465等89");
+			console.log(res,"安迪故丫头");
 			this.axios({
 				url: 'http://192.168.1.54:8080/admin/role/permissions',
-				method: 'get',
-				params: {
+				method: 'post',
+				data: {
+					roleId: this.forms.id,
+					permissions:res
 				},
 				headers: {
 					'X-Litemall-Admin-Token': sessionStorage.getItem('token')

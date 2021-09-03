@@ -18,13 +18,13 @@
 </template>
 
 <script>
-	import getup from './gortup.vue'
+import getup from './gortup.vue'
 export default {
   name: 'tab',
   props: ['ontice'],
   data () {
     return {
-		kiser:[],
+      kiser: [],
       keyIndex: null,
       selectList: []
     }
@@ -51,17 +51,17 @@ export default {
         this.ontice[i].name == item.name ? this.ontice[i].state = false : ''
       }
     },
-	show () {
+    show () {
 	  // console.log(this.$route.name);
 	  this.kiser.push({
 	    name: this.$route.name,
 	    path: this.$route.path
 	  })
 	  // console.log(this.kiser);
-	}
+    }
   },
   watch: {
-$route: 'show'
+    $route: 'show'
   },
   components: {
     getup

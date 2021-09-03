@@ -48,7 +48,7 @@ export default {
     },
     // 页面刷新
     Refresh () {
-      location.reload();
+      this.$router.push('/iouert')
     },
     // 删除
     deletes (index) {

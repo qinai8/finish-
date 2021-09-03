@@ -2,50 +2,46 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import Footprint from '../views/user/footprint.vue'
+import Address from '../views/user/Management.vue'
+import Collect from '../views/user/Shipping.vue'
+import Footpr from '../views/user/member.vue'
+import History from '../views/user/history.vue'
+import Feedback from '../views/user/feedback.vue'
+import Region from '../views/mall/region.vue'
+import Brand from '../views/mall/brand.vue'
+import Category from '../views/mall/category.vue'
+import Order from '../views/mall/order.vue'
+import Aftersale from '../views/mall/aftersale.vue'
+import Issue from '../views/mall/issue.vue'
+import Keyword from '../views/mall/keyword.vue'
+import Admin from '../views/sys/admin.vue'
+import Notice from '../views/sys/notice.vue'
+import Log from '../views/sys/log.vue'
+import Role from '../views/sys/role.vue'
+import Os from '../views/sys/os.vue'
 import Iouert from '../components/Resey/iouert.vue'
 
-//固定
-export const fixedRouter = [{
-    path: '/',
-    component: Login,
-    hidden: true
+Vue.use(VueRouter)
+  {
+    path: '/dashboard',
+    name: 'Home',
+    component: Home
   },
   {
-    path: '/',
-    component: Home, //整体页面的布局(包含左侧菜单跟主内容区域)
-    children: [{
-      path: 'home',
-      // component: ,
-      meta: {
-        title: '首页', //菜单名称
-        roles: ['user', 'admin'], //当前菜单哪些角色可以看到
-        icon: 'el-icon-info' //菜单左侧的icon图标
-      }
-    }]
+	 path:'/iouert' ,
+	 name:'Iouert',
+	 component:Iouert
   },
-]
-
-//动态表
-Vue.use(VueRouter)
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
 export const asyncRouterMap = [
-	{
-	  path: '/dashboard',
-	  name: 'Home',
-	  component: Home
-	},
-	{
-		 path:'/iouert' ,
-		 name:'Iouert',
-		 component:Iouert
-	},
-	{
-	  path: '/login',
-	  name: 'Login',
-	  component: Login
-	},
   {
     path: '/user',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     name: 'userManage',
@@ -55,9 +51,9 @@ export const asyncRouterMap = [
     },
     children: [
       {
-        path: 'management',
-        component: () => import('@/views/user/Management.vue'),
-        name: 'Management',
+        path: 'user',
+        component: () => import('@/views/user/user'),
+        name: 'user',
         meta: {
           perms: ['GET /admin/user/list'],
           title: '会员管理',
@@ -65,9 +61,9 @@ export const asyncRouterMap = [
         }
       },
       {
-        path: 'dashboard',
-        component: () => import('@/views/user/Dashboard.vue'),
-        name: 'Dashboard',
+        path: 'address',
+        component: () => import('@/views/user/address'),
+        name: 'address',
         meta: {
           perms: ['GET /admin/address/list'],
           title: '收货地址',
@@ -75,9 +71,9 @@ export const asyncRouterMap = [
         }
       },
       {
-        path: 'member',
-        component: () => import('@/views/user/member.vue'),
-        name: 'member',
+        path: 'collect',
+        component: () => import('@/views/user/collect'),
+        name: 'collect',
         meta: {
           perms: ['GET /admin/collect/list'],
           title: '会员收藏',
@@ -86,7 +82,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'footprint',
-        component: () => import('@/views/user/footprint.vue'),
+        component: () => import('@/views/user/footprint'),
         name: 'footprint',
         meta: {
           perms: ['GET /admin/footprint/list'],
@@ -96,7 +92,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'history',
-        component: () => import('@/views/user/history.vue'),
+        component: () => import('@/views/user/history'),
         name: 'history',
         meta: {
           perms: ['GET /admin/history/list'],
@@ -106,7 +102,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'feedback',
-        component: () => import('@/views/user/feedback.vue'),
+        component: () => import('@/views/user/feedback'),
         name: 'feedback',
         meta: {
           perms: ['GET /admin/feedback/list'],
@@ -119,7 +115,7 @@ export const asyncRouterMap = [
 
   {
     path: '/mall',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     name: 'mallManage',
@@ -130,7 +126,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'region',
-        component: () => import('@/views/mall/region.vue'),
+        component: () => import('@/views/mall/region'),
         name: 'region',
         meta: {
           title: '行政区域',
@@ -139,7 +135,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'brand',
-        component: () => import('@/views/mall/brand.vue'),
+        component: () => import('@/views/mall/brand'),
         name: 'brand',
         meta: {
           perms: ['GET /admin/brand/list', 'POST /admin/brand/create', 'GET /admin/brand/read', 'POST /admin/brand/update', 'POST /admin/brand/delete'],
@@ -149,7 +145,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'category',
-        component: () => import('@/views/mall/category.vue'),
+        component: () => import('@/views/mall/category'),
         name: 'category',
         meta: {
           perms: ['GET /admin/category/list', 'POST /admin/category/create', 'GET /admin/category/read', 'POST /admin/category/update', 'POST /admin/category/delete'],
@@ -159,7 +155,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'order',
-        component: () => import('@/views/mall/order.vue'),
+        component: () => import('@/views/mall/order'),
         name: 'order',
         meta: {
           perms: ['GET /admin/order/list', 'GET /admin/order/detail', 'POST /admin/order/ship', 'POST /admin/order/refund', 'POST /admin/order/delete', 'POST /admin/order/reply'],
@@ -169,7 +165,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'aftersale',
-        component: () => import('@/views/mall/aftersale.vue'),
+        component: () => import('@/views/mall/aftersale'),
         name: 'aftersale',
         meta: {
           perms: ['GET /admin/aftersale/list', 'GET /admin/aftersale/detail', 'POST /admin/order/receive', 'POST /admin/aftersale/complete', 'POST /admin/aftersale/reject'],
@@ -179,7 +175,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'issue',
-        component: () => import('@/views/mall/issue.vue'),
+        component: () => import('@/views/mall/issue'),
         name: 'issue',
         meta: {
           perms: ['GET /admin/issue/list', 'POST /admin/issue/create', 'GET /admin/issue/read', 'POST /admin/issue/update', 'POST /admin/issue/delete'],
@@ -189,7 +185,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'keyword',
-        component: () => import('@/views/mall/keyword.vue'),
+        component: () => import('@/views/mall/keyword'),
         name: 'keyword',
         meta: {
           perms: ['GET /admin/keyword/list', 'POST /admin/keyword/create', 'GET /admin/keyword/read', 'POST /admin/keyword/update', 'POST /admin/keyword/delete'],
@@ -202,7 +198,7 @@ export const asyncRouterMap = [
 
   {
     path: '/goods',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     name: 'goodsManage',
@@ -213,7 +209,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'list',
-        component: () => import('@/views/goods/list.vue'),
+        component: () => import('@/views/goods/list'),
         name: 'goodsList',
         meta: {
           perms: ['GET /admin/goods/list', 'POST /admin/goods/delete'],
@@ -223,7 +219,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'create',
-        component: () => import('@/views/goods/create.vue'),
+        component: () => import('@/views/goods/create'),
         name: 'goodsCreate',
         meta: {
           perms: ['POST /admin/goods/create'],
@@ -233,7 +229,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'edit',
-        component: () => import('@/views/goods/edit.vue'),
+        component: () => import('@/views/goods/edit'),
         name: 'goodsEdit',
         meta: {
           perms: ['GET /admin/goods/detail', 'POST /admin/goods/update', 'POST /admin/goods/catAndBrand'],
@@ -244,7 +240,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'comment',
-        component: () => import('@/views/goods/comment.vue'),
+        component: () => import('@/views/goods/comment'),
         name: 'goodsComment',
         meta: {
           perms: ['GET /admin/comment/list', 'POST /admin/comment/delete'],
@@ -256,7 +252,7 @@ export const asyncRouterMap = [
   },
   {
     path: '/promotion',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     name: 'promotionManage',
@@ -267,7 +263,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'ad',
-        component: () => import('@/views/promotion/ad.vue'),
+        component: () => import('@/views/promotion/ad'),
         name: 'ad',
         meta: {
           perms: ['GET /admin/ad/list', 'POST /admin/ad/create', 'GET /admin/ad/read', 'POST /admin/ad/update', 'POST /admin/ad/delete'],
@@ -277,7 +273,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'coupon',
-        component: () => import('@/views/promotion/coupon.vue'),
+        component: () => import('@/views/promotion/coupon'),
         name: 'coupon',
         meta: {
           perms: ['GET /admin/coupon/list', 'POST /admin/coupon/create', 'POST /admin/coupon/update', 'POST /admin/coupon/delete'],
@@ -287,7 +283,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'couponDetail',
-        component: () => import('@/views/promotion/couponDetail.vue'),
+        component: () => import('@/views/promotion/couponDetail'),
         name: 'couponDetail',
         meta: {
           perms: ['GET /admin/coupon/list', 'GET /admin/coupon/listuser'],
@@ -298,7 +294,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'topic',
-        component: () => import('@/views/promotion/topic.vue'),
+        component: () => import('@/views/promotion/topic'),
         name: 'topic',
         meta: {
           perms: ['GET /admin/topic/list', 'POST /admin/topic/create', 'GET /admin/topic/read', 'POST /admin/topic/update', 'POST /admin/topic/delete'],
@@ -308,7 +304,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'topic-create',
-        component: () => import('@/views/promotion/topic-create.vue'),
+        component: () => import('@/views/promotion/topicCreate'),
         name: 'topicCreate',
         meta: {
           perms: ['POST /admin/topic/create'],
@@ -319,7 +315,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'topic-edit',
-        component: () => import('@/views/promotion/topic-edit.vue'),
+        component: () => import('@/views/promotion/topicEdit'),
         name: 'topicEdit',
         meta: {
           perms: ['GET /admin/topic/read', 'POST /admin/topic/update'],
@@ -330,7 +326,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'groupon-rule',
-        component: () => import('@/views/promotion/groupon-rule.vue'),
+        component: () => import('@/views/promotion/grouponRule'),
         name: 'grouponRule',
         meta: {
           perms: ['GET /admin/groupon/list', 'POST /admin/groupon/create', 'POST /admin/groupon/update', 'POST /admin/groupon/delete'],
@@ -340,7 +336,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'groupon-activity',
-        component: () => import('@/views/promotion/groupon-activity.vue'),
+        component: () => import('@/views/promotion/grouponActivity'),
         name: 'grouponActivity',
         meta: {
           perms: ['GET /admin/groupon/listRecord'],
@@ -353,7 +349,7 @@ export const asyncRouterMap = [
 
   {
     path: '/sys',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     name: 'sysManage',
@@ -364,7 +360,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'admin',
-        component: () => import('@/views/sys/admin.vue'),
+        component: () => import('@/views/sys/admin'),
         name: 'admin',
         meta: {
           perms: ['GET /admin/admin/list', 'POST /admin/admin/create', 'POST /admin/admin/update', 'POST /admin/admin/delete'],
@@ -374,7 +370,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'notice',
-        component: () => import('@/views/sys/notice.vue'),
+        component: () => import('@/views/sys/notice'),
         name: 'sysNotice',
         meta: {
           perms: ['GET /admin/notice/list', 'POST /admin/notice/create', 'POST /admin/notice/update', 'POST /admin/notice/delete'],
@@ -384,7 +380,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'log',
-        component: () => import('@/views/sys/log.vue'),
+        component: () => import('@/views/sys/log'),
         name: 'log',
         meta: {
           perms: ['GET /admin/log/list'],
@@ -394,7 +390,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'role',
-        component: () => import('@/views/sys/role.vue'),
+        component: () => import('@/views/sys/role'),
         name: 'role',
         meta: {
           perms: ['GET /admin/role/list', 'POST /admin/role/create', 'POST /admin/role/update', 'POST /admin/role/delete', 'GET /admin/role/permissions', 'POST /admin/role/permissions'],
@@ -404,7 +400,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'os',
-        component: () => import('@/views/sys/os.vue'),
+        component: () => import('@/views/sys/os'),
         name: 'os',
         meta: {
           perms: ['GET /admin/storage/list', 'POST /admin/storage/create', 'POST /admin/storage/update', 'POST /admin/storage/delete'],
@@ -417,7 +413,7 @@ export const asyncRouterMap = [
 
   {
     path: '/config',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     name: 'configManage',
@@ -428,7 +424,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'mall',
-        component: () => import('@/views/config/mall.vue'),
+        component: () => import('@/views/config/mall'),
         name: 'configMall',
         meta: {
           perms: ['GET /admin/config/mall', 'POST /admin/config/mall'],
@@ -438,7 +434,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'express',
-        component: () => import('@/views/config/express.vue'),
+        component: () => import('@/views/config/express'),
         name: 'configExpress',
         meta: {
           perms: ['GET /admin/config/express', 'POST /admin/config/express'],
@@ -448,7 +444,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'order',
-        component: () => import('@/views/config/order.vue'),
+        component: () => import('@/views/config/order'),
         name: 'configOrder',
         meta: {
           perms: ['GET /admin/config/order', 'POST /admin/config/order'],
@@ -458,7 +454,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'wx',
-        component: () => import('@/views/config/wx.vue'),
+        component: () => import('@/views/config/wx'),
         name: 'configWx',
         meta: {
           perms: ['GET /admin/config/wx', 'POST /admin/config/wx'],
@@ -471,7 +467,7 @@ export const asyncRouterMap = [
 
   {
     path: '/stat',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     name: 'statManage',
@@ -482,7 +478,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'user',
-        component: () => import('@/views/stat/user.vue'),
+        component: () => import('@/views/stat/user'),
         name: 'statUser',
         meta: {
           perms: ['GET /admin/stat/user'],
@@ -492,7 +488,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'order',
-        component: () => import('@/views/stat/order.vue'),
+        component: () => import('@/views/stat/order'),
         name: 'statOrder',
         meta: {
           perms: ['GET /admin/stat/order'],
@@ -502,7 +498,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'goods',
-        component: () => import('@/views/stat/goods.vue'),
+        component: () => import('@/views/stat/goods'),
         name: 'statGoods',
         meta: {
           perms: ['GET /admin/stat/goods'],
@@ -514,7 +510,7 @@ export const asyncRouterMap = [
   },
   {
     path: 'external-link',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     name: 'externalLink',
@@ -555,19 +551,19 @@ export const asyncRouterMap = [
   },
   {
     path: '/profile',
-    component: Home,
+    component: Layout,
     redirect: 'noredirect',
     alwaysShow: true,
     children: [
       {
         path: 'password',
-        component: () => import('@/views/profile/password.vue'),
+        component: () => import('@/views/profile/password'),
         name: 'password',
         meta: { title: '修改密码', noCache: true }
       },
       {
         path: 'notice',
-        component: () => import('@/views/profile/notice.vue'),
+        component: () => import('@/views/profile/notice'),
         name: 'notice',
         meta: { title: '通知中心', noCache: true }
       }
@@ -576,13 +572,9 @@ export const asyncRouterMap = [
   }
 ]
 
-export const router = new VueRouter({
-  asyncRouterMap
+
+const router = new VueRouter({
+  routes
 })
 
-export default new VueRouter({
-  routes: fixedRouter
-
-})
-
-// export default router
+export default router

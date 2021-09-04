@@ -4,6 +4,12 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Iouert from '../components/Resey/iouert.vue'
 
+Vue.use(VueRouter);
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+ return originalPush.call(this, location).catch(err => err)
+}
 //固定
 export const fixedRouter = [{
     path: '/',
@@ -11,16 +17,12 @@ export const fixedRouter = [{
     hidden: true
   },
   {
-    path: '/',
+    path: '/home',
     component: Home, //整体页面的布局(包含左侧菜单跟主内容区域)
     children: [{
       path: 'home',
-      // component: ,
-      meta: {
-        title: '首页', //菜单名称
-        roles: ['user', 'admin'], //当前菜单哪些角色可以看到
-        icon: 'el-icon-info' //菜单左侧的icon图标
-      }
+	  name:Home,
+	  component: Home,
     }]
   },
 ]
@@ -28,21 +30,6 @@ export const fixedRouter = [{
 //动态表
 Vue.use(VueRouter)
 export const asyncRouterMap = [
-	{
-	  path: '/dashboard',
-	  name: 'Home',
-	  component: Home
-	},
-	{
-		 path:'/iouert' ,
-		 name:'Iouert',
-		 component:Iouert
-	},
-	{
-	  path: '/login',
-	  name: 'Login',
-	  component: Login
-	},
   {
     path: '/user',
     component: Home,
@@ -576,8 +563,23 @@ export const asyncRouterMap = [
   }
 ]
 
-export const router = new VueRouter({
-  asyncRouterMap
+const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
+})
+
+//全局路由守卫
+router.beforeEach((to, from, next) => {
+	let token = sessionStorage.getItem('token')
+	if (token) {
+		next()
+	} else {
+		if (to.path === '/') {
+			next()
+		} else {
+			next('/')
+		}
+	}
 })
 
 export default new VueRouter({

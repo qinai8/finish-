@@ -6,7 +6,7 @@
 				<li class="lis" ref="lis" v-for="(item,index) in ontice" :key="index"
 					:class="oindex == index ? 'oli' : ''" @click="show(index)" @mousedown="dialogON(index)"
 					@contextmenu.prevent>
-					{{item.name[1]}}
+					{{item.name}}
 					<span @click.stop="deletes(index)">×</span>
 				</li>
 			</div>
@@ -32,6 +32,7 @@ export default {
   },
   created () {
     this.onRouteChanged()
+    console.log(this.ontice)
   },
   methods: {
     // 获取路由参数

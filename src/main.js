@@ -9,6 +9,7 @@ import VueCookies from 'vue-cookies'
 import '@/global.js'//全局
 // 控制路由表的js文件
 import '@/permission.js'
+import Cookie from "js-cookie"
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)

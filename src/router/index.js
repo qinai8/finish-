@@ -12,12 +12,12 @@ VueRouter.prototype.push = function push(location) {
 }
 //固定
 export const fixedRouter = [{
-    path: '/',
+    path: '/login',
     component: Login,
     hidden: true
   },
   {
-    path: '/home',
+    path: '/',
     component: Home, //整体页面的布局(包含左侧菜单跟主内容区域)
     children: [{
       path: 'home',
@@ -38,7 +38,7 @@ export const asyncRouterMap = [
     name: 'userManage',
     meta: {
       title: '用户管理',
-      icon: 'chart'
+      icon: 'el-icon-info'
     },
     children: [
       {
@@ -112,7 +112,7 @@ export const asyncRouterMap = [
     name: 'mallManage',
     meta: {
       title: '商场管理',
-      icon: 'chart'
+      icon: 'el-icon-info'
     },
     children: [
       {
@@ -195,7 +195,7 @@ export const asyncRouterMap = [
     name: 'goodsManage',
     meta: {
       title: '商品管理',
-      icon: 'chart'
+      icon: 'el-icon-info'
     },
     children: [
       {
@@ -249,7 +249,7 @@ export const asyncRouterMap = [
     name: 'promotionManage',
     meta: {
       title: '推广管理',
-      icon: 'chart'
+      icon: 'el-icon-info'
     },
     children: [
       {
@@ -346,7 +346,7 @@ export const asyncRouterMap = [
     name: 'sysManage',
     meta: {
       title: '系统管理',
-      icon: 'chart'
+      icon: 'el-icon-info'
     },
     children: [
       {
@@ -410,7 +410,7 @@ export const asyncRouterMap = [
     name: 'configManage',
     meta: {
       title: '配置管理',
-      icon: 'chart'
+      icon: 'el-icon-info'
     },
     children: [
       {
@@ -464,7 +464,7 @@ export const asyncRouterMap = [
     name: 'statManage',
     meta: {
       title: '统计报表',
-      icon: 'chart'
+      icon: 'el-icon-info'
     },
     children: [
       {
@@ -540,27 +540,27 @@ export const asyncRouterMap = [
       }
     ]
   },
-  {
-    path: '/profile',
-    component: Home,
-    redirect: 'noredirect',
-    alwaysShow: true,
-    children: [
-      {
-        path: 'password',
-        component: () => import('@/views/profile/password.vue'),
-        name: 'password',
-        meta: { title: '修改密码', noCache: true }
-      },
-      {
-        path: 'notice',
-        component: () => import('@/views/profile/notice.vue'),
-        name: 'notice',
-        meta: { title: '通知中心', noCache: true }
-      }
-    ],
-    hidden: true
-  }
+  // {
+  //   path: '/profile',
+  //   component: Home,
+  //   redirect: 'noredirect',
+  //   alwaysShow: true,
+  //   children: [
+  //     {
+  //       path: 'password',
+  //       component: () => import('@/views/profile/password.vue'),
+  //       name: 'password',
+  //       meta: { title: '修改密码', noCache: true }
+  //     },
+  //     {
+  //       path: 'notice',
+  //       component: () => import('@/views/profile/notice.vue'),
+  //       name: 'notice',
+  //       meta: { title: '通知中心', noCache: true }
+  //     }
+  //   ],
+  //   hidden: true
+  // }
 ]
 
 const router = new VueRouter({
@@ -584,7 +584,6 @@ router.beforeEach((to, from, next) => {
 
 export default new VueRouter({
   routes: fixedRouter
-
 })
 
 // export default router

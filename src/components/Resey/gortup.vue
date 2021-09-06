@@ -63,7 +63,7 @@ export default {
     // 删除后跳转的路由
     move () {
       if (this.ontice.length <= 0) {
-        this.$router.push('/dashboard')
+        this.$router.push('/home')
       } else {
         if (this.$route.path !== this.ontice[this.oindex].url) {
           this.$router.push(this.ontice[this.oindex].url)

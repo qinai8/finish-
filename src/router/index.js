@@ -12,12 +12,12 @@ VueRouter.prototype.push = function push(location) {
 }
 //固定
 export const fixedRouter = [{
-    path: '/login',
+    path: '/',
     component: Login,
     hidden: true
   },
   {
-    path: '/',
+    path: '/home',
     component: Home, //整体页面的布局(包含左侧菜单跟主内容区域)
     children: [{
       path: 'home',

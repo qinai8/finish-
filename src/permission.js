@@ -6,6 +6,7 @@ var addRouFlag = false
 router.beforeEach((to, from, next) => {
 	//判断是否登录
 	let token = sessionStorage.getItem('token')
+	console.log(token,"8555");
 	let perms = sessionStorage.getItem('perms')
 	//console.log(perms)
 	if (perms&&perms!=='') {
